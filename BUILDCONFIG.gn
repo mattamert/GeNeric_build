@@ -1,0 +1,34 @@
+# Copyright 2015 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+# This file is a (heavily modified) version of Chromium's BUILDCONFIG.gn.
+
+if (target_os == "") {
+  target_os = host_os
+}
+
+if (target_cpu == "") {
+  target_cpu = host_cpu
+}
+
+if (host_os == "win") {
+  _default_toolchain = "//build/toolchain/win:win_clang_$target_cpu"
+} else {
+  assert(false, "Currently unsupported host os.")
+}
+
+# This is just temporary, as we only support Windows for now.
+current_os = "win"
+
+is_android = current_os == "android"
+is_ios = current_os == "ios"
+is_linux = current_os == "linux"
+is_mac = current_os == "mac"
+is_win = current_os == "win"
+
+is_posix = !is_win
+
+symbol_level = 2
+
+set_default_toolchain(_default_toolchain)
