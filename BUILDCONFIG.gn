@@ -32,3 +32,30 @@ is_posix = !is_win
 symbol_level = 2
 
 set_default_toolchain(_default_toolchain)
+
+# TODO: Add sources filters (e.g. *_win.* or *_mac.*)
+
+# Default compiler configs.
+# TODO: Should probably try to copy more from Chromium.
+default_compiler_configs = [ "//build/config:default_include_dirs" ]
+
+set_defaults("static_library") {
+  configs = default_compiler_configs
+}
+set_defaults("source_set") {
+  configs = default_compiler_configs
+}
+
+# TODO: Add some default executable configs (e.g. incremental linking, target console subsystem by default, etc).
+default_executable_configs = default_compiler_configs
+set_defaults("executable") {
+  configs = default_executable_configs
+}
+
+# TODO: Add some default shared library configs.
+default_shared_library_configs = default_compiler_configs
+set_defaults("shared_library") {
+  configs = default_shared_library_configs
+}
+
+# TODO: Add support for loadable_modules?

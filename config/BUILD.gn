@@ -1,0 +1,6 @@
+config("default_include_dirs") {
+  include_dirs = [
+    "//",
+    root_gen_dir,
+  ]
+}
