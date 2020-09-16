@@ -37,7 +37,7 @@ set_default_toolchain(_default_toolchain)
 
 # Default compiler configs.
 # TODO: Should probably try to copy more from Chromium.
-default_compiler_configs = [ "//build/config:default_include_dirs" ]
+default_compiler_configs = [ "//build/config:default_include_dirs", "//build/config:default_compiler_options" ]
 
 set_defaults("static_library") {
   configs = default_compiler_configs

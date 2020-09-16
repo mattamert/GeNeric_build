@@ -4,3 +4,8 @@ config("default_include_dirs") {
     root_gen_dir,
   ]
 }
+
+config("default_compiler_options") {
+  #TODO: This is the Windows syntax. The Linux/Mac syntax would be "-std=c++17"
+  cflags_cc = [ "/std:c++17" ]
+}
