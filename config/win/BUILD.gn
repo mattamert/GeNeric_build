@@ -13,3 +13,22 @@ config("dynamic_crt") {
     cflags = [ "/MD" ]
   }
 }
+
+# Lean and mean ----------------------------------------------------------------
+
+# Some third party code might not compile with WIN32_LEAN_AND_MEAN so we have
+# to have a separate config for it. Remove this config from your target to
+# get the "bloaty and accommodating" version of windows.h.
+config("lean_and_mean") {
+  defines = [ "WIN32_LEAN_AND_MEAN" ]
+}
+
+# Nominmax --------------------------------------------------------------------
+
+# Some third party code defines NOMINMAX before including windows.h, which
+# then causes warnings when it's been previously defined on the command line.
+# For such targets, this config can be removed.
+
+config("nominmax") {
+  defines = [ "NOMINMAX" ]
+}

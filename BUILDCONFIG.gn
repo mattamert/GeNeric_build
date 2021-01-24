@@ -49,6 +49,8 @@ default_compiler_configs = [
 if (is_win) {
   default_compiler_configs += [
     "//build/config/win:dynamic_crt",
+    "//build/config/win:lean_and_mean",
+    "//build/config/win:nominmax",
   ]
 }
 
