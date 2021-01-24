@@ -33,11 +33,24 @@ symbol_level = 2
 
 set_default_toolchain(_default_toolchain)
 
-# TODO: Add sources filters (e.g. *_win.* or *_mac.*)
+declare_args() {
+  # Debug build. Enabling official builds automatically sets is_debug to false.
+  is_debug = false
+}
 
-# Default compiler configs.
-# TODO: Should probably try to copy more from Chromium.
-default_compiler_configs = [ "//build/config:default_include_dirs", "//build/config:default_compiler_options" ]
+# TODO: sources filters (e.g. *_win.* or *_mac.*) might be a good thing to add.
+
+
+default_compiler_configs = [
+  "//build/config:default_include_dirs",
+  "//build/config:cpp17"
+]
+
+if (is_win) {
+  default_compiler_configs += [
+    "//build/config/win:dynamic_crt",
+  ]
+}
 
 set_defaults("static_library") {
   configs = default_compiler_configs

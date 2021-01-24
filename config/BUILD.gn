@@ -1,3 +1,5 @@
+# This file contains all platform-agnostic (or cross-platform) configurations.
+
 config("default_include_dirs") {
   include_dirs = [
     "//",
@@ -5,7 +7,10 @@ config("default_include_dirs") {
   ]
 }
 
-config("default_compiler_options") {
-  #TODO: This is the Windows syntax. The Linux/Mac syntax would be "-std=c++17"
-  cflags_cc = [ "/std:c++17" ]
+config("cpp17") {
+  if (is_win) {
+    cflags_cc = [ "/std:c++17" ]
+  } else {
+    cflags_cc = [ "-std:c++17" ]
+  }
 }
