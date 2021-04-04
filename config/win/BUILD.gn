@@ -5,6 +5,8 @@
 # This file contains Windows-specific configuration.
 # Modified from Chromium's version
 
+# Dynamic CRT -----------------------------------------------------------------
+
 config("dynamic_crt") {
   if (is_debug) {
     # This pulls in the DLL debug CRT and defines _DEBUG
@@ -14,7 +16,7 @@ config("dynamic_crt") {
   }
 }
 
-# Lean and mean ----------------------------------------------------------------
+# Lean and mean ---------------------------------------------------------------
 
 # Some third party code might not compile with WIN32_LEAN_AND_MEAN so we have
 # to have a separate config for it. Remove this config from your target to
@@ -31,4 +33,19 @@ config("lean_and_mean") {
 
 config("nominmax") {
   defines = [ "NOMINMAX" ]
+}
+
+# Optimization levels ---------------------------------------------------------
+
+# TODO: Look at common_optimize_on_cflags in the chromium repo for some good
+# additional optimizations.
+config("optimization_level") {
+   if (opt_level == 1) {
+    cflags = [ "/O1" ]
+  } else if (opt_level == 2) {
+    cflags = [ "/O2" ]
+  } else {
+    # default optimization level is 0.
+    cflags = [ "/Od" ]
+  }
 }

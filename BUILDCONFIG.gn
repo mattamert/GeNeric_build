@@ -34,8 +34,8 @@ symbol_level = 2
 set_default_toolchain(_default_toolchain)
 
 declare_args() {
-  # Debug build. Enabling official builds automatically sets is_debug to false.
   is_debug = false
+  opt_level = 0
 }
 
 # TODO: sources filters (e.g. *_win.* or *_mac.*) might be a good thing to add.
@@ -51,6 +51,7 @@ if (is_win) {
     "//build/config/win:dynamic_crt",
     "//build/config/win:lean_and_mean",
     "//build/config/win:nominmax",
+    "//build/config/win:optimization_level",
   ]
 }
 
