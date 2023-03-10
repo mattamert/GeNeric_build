@@ -44,6 +44,9 @@ template("win_toolchain") {
     link = "${clang_base_path}/bin/lld-link"
     linklib = "${clang_base_path}/bin/llvm-lib"
 
+    # lld-link apparently no longer accepts the standard "-l" prefix
+    lib_switch = ""
+
     # Object files go in this directory. Use label_name instead of
     # target_output_name since labels will generally have no spaces and will be
     # unique in the directory.
